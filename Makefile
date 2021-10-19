@@ -12,7 +12,7 @@ CXXFLAGS	:= -std=c++17 -Wall -Wextra -ggdb
 # define library paths in addition to /usr/lib
 #   if I wanted to include libraries not in /usr/lib I'd specify
 #   their path using -Lpath, something like:
-LFLAGS := -lsioclient -lws2_32
+LFLAGS := -lsioclient 
 
 # define output directory
 BIN	:= bin
@@ -24,7 +24,7 @@ SRC		:= src
 INCLUDE	:= include
 
 # define lib directory
-LIB		:= lib
+LIB		:= lib/windows
 
 # define build directory
 BUILD	:= build
@@ -34,6 +34,7 @@ MAIN	:= main.exe
 SOURCEDIRS	:= $(SRC)
 INCLUDEDIRS	:= $(INCLUDE)
 LIBDIRS		:= $(LIB)
+LFLAGS	+= -lws2_32
 FIXPATH = $(subst /,\,$1)
 RM			:= del /q /f
 MD	:= mkdir
@@ -41,7 +42,9 @@ else
 MAIN	:= main
 SOURCEDIRS	:= $(shell find $(SRC) -type d)
 INCLUDEDIRS	:= $(shell find $(INCLUDE) -type d)
+LIB := lib/linux
 LIBDIRS		:= $(shell find $(LIB) -type d)
+LFLAGS	+= -pthread
 FIXPATH = $1
 RM = rm -f
 MD	:= mkdir -p

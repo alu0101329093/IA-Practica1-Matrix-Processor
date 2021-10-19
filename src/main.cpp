@@ -33,8 +33,7 @@ int main(int argc, char* argv[]) {
     std::string string{json.dump()};
     client.socket()->emit("receiveMatrix", string);
     std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-  }std
+  }
   std::cout << "Exit" << std::endl;
-  // system("pause");
   return EXIT_SUCCESS;
 }
