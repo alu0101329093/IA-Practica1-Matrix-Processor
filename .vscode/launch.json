@@ -23,7 +23,7 @@
             "windows": {
                 "MIMode": "gdb",
                 "miDebuggerPath": "gdb.exe",
-                "program": "${workspaceFolder}/bin/main.exe",
+                "program": "${workspaceFolder}\\bin\\main.exe",
                 "externalConsole": true
             },
             "preLaunchTask": "build"

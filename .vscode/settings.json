@@ -51,6 +51,15 @@
     "ratio": "cpp",
     "sstream": "cpp",
     "xthread": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "array": "cpp",
+    "cctype": "cpp",
+    "clocale": "cpp",
+    "ctime": "cpp",
+    "forward_list": "cpp",
+    "iterator": "cpp",
+    "numeric": "cpp",
+    "string_view": "cpp",
+    "valarray": "cpp"
   }
 }
