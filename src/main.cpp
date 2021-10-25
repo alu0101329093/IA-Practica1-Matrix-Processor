@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
     nlohmann::json json{nlohmann::json::parse(ev.get_message()->get_string())};
     std::vector<std::vector<int>> matrix =
         json[0].get<std::vector<std::vector<int>>>();
-    nlohmann::json path_json{{{0, 0}, {1, 1}}};
+    nlohmann::json path_json{std::vector<std::vector<int>>{{0, 0}, {1, 1}}};
     client.socket()->emit("receivePath", path_json.dump());
   });
   while (!exit) continue;
