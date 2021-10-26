@@ -14,9 +14,6 @@ class RectilinearFunction : public HeuristicFunction {
 
   std::vector<Position> operator()(
       const std::vector<std::vector<int>>& matrix) const override;
-
- private:
-  Direction direction_;
 };
 
 }  // namespace ia

@@ -16,6 +16,12 @@ class HeuristicFunction {
 
   virtual std::vector<Position> operator()(
       const std::vector<std::vector<int>>& matrix) const = 0;
+
+  inline Direction GetDirection() const { return direction_; }
+  inline void SetDirection(Direction direction) { direction_ = direction; }
+
+ protected:
+  Direction direction_;
 };
 
 }  // namespace ia
