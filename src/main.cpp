@@ -8,7 +8,7 @@ int main(int argc, char* argv[]) {
   client.socket()->on("stop", [&](sio::event& ev) { exit = true; });
   client.socket()->on("sendMatrix", [&](sio::event& ev) {
     nlohmann::json json{nlohmann::json::parse(ev.get_message()->get_string())};
-    ia::MatrixProcessor processor{json[0].get<std::vector<std::vector<int>>>()};
+    ia::AStarSearch processor{json[0].get<std::vector<std::vector<int>>>()};
     nlohmann::json path_json{processor.GetPath()};
     client.socket()->emit("receivePath", path_json.dump());
   });

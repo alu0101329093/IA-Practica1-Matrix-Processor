@@ -9,7 +9,7 @@
 #include <thread>
 #include <vector>
 
-#include "matrix_processor/matrix_processor.h"
+#include "a_star_search/a_star_search.h"
 #include "nlohmann/json.hpp"
 #include "sio_client.h"
 

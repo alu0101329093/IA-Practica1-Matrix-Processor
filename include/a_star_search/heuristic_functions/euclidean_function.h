@@ -2,10 +2,9 @@
 #define MATRIXPROCESSOR_MATRIX_PROCESSOR_HEURISTIC_FUNCTIONS_EUCLIDEAN_FUNCTION_H_
 
 #include <cmath>
-#include <vector>
 
-#include "matrix_processor/heuristic_functions/heuristic_function.h"
-#include "matrix_processor/position.h"
+#include "a_star_search/heuristic_functions/heuristic_function.h"
+#include "a_star_search/position.h"
 
 namespace ia {
 

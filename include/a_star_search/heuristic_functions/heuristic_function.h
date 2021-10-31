@@ -1,9 +1,7 @@
 #ifndef MATRIXPROCESSOR_MATRIX_PROCESSOR_HEURISTIC_FUNCTIONS_HEURISTIC_FUNCTION_H_
 #define MATRIXPROCESSOR_MATRIX_PROCESSOR_HEURISTIC_FUNCTIONS_HEURISTIC_FUNCTION_H_
 
-#include <vector>
-
-#include "matrix_processor/position.h"
+#include "a_star_search/position.h"
 
 namespace ia {
 

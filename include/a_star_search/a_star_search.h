@@ -4,15 +4,15 @@
 #include <memory>
 #include <vector>
 
-#include "matrix_processor/heuristic_functions/heuristic_function.h"
-#include "matrix_processor/position.h"
+#include "a_star_search/heuristic_functions/heuristic_function.h"
+#include "a_star_search/position.h"
 #include "nlohmann/json.hpp"
 
 namespace ia {
 
-class MatrixProcessor {
+class AStarSearch {
  public:
-  MatrixProcessor(std::vector<std::vector<int>> matrix);
+  AStarSearch(std::vector<std::vector<int>> matrix);
 
   inline const std::vector<std::vector<int>> GetMatrix() const {
     return matrix_;
