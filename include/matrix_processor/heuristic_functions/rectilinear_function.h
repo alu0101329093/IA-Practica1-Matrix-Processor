@@ -1,6 +1,7 @@
 #ifndef MATRIXPROCESSOR_MATRIX_PROCESSOR_HEURISTIC_FUNCTIONS_RECTILINEAR_FUNCTION_H_
 #define MATRIXPROCESSOR_MATRIX_PROCESSOR_HEURISTIC_FUNCTIONS_RECTILINEAR_FUNCTION_H_
 
+#include <cmath>
 #include <vector>
 
 #include "matrix_processor/heuristic_functions/heuristic_function.h"
@@ -12,8 +13,7 @@ class RectilinearFunction : public HeuristicFunction {
  public:
   RectilinearFunction(Direction direction);
 
-  std::vector<Position> operator()(
-      const std::vector<std::vector<int>>& matrix) const override;
+  double operator()(Position position, Position goal) const override;
 };
 
 }  // namespace ia
