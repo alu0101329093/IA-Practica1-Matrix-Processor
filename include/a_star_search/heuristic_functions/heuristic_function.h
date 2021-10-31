@@ -7,18 +7,7 @@ namespace ia {
 
 class HeuristicFunction {
  public:
-  enum class Direction {
-    k4Ways,
-    k8Ways,
-  };
-
   virtual double operator()(Position position, Position goal) const = 0;
-
-  inline Direction GetDirection() const { return direction_; }
-  inline void SetDirection(Direction direction) { direction_ = direction; }
-
- protected:
-  Direction direction_;
 };
 
 }  // namespace ia

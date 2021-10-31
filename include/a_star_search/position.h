@@ -8,16 +8,16 @@ namespace ia {
 
 class Position {
  public:
-  Position(std::size_t x, std::size_t y);
+  Position(double x, double y);
 
-  inline std::size_t GetX() const { return x_; }
-  inline void SetX(std::size_t x) { x_ = x; }
-  inline std::size_t GetY() const { return y_; }
-  inline void SetY(std::size_t y) { y_ = y; }
+  inline double GetX() const { return x_; }
+  inline void SetX(double x) { x_ = x; }
+  inline double GetY() const { return y_; }
+  inline void SetY(double y) { y_ = y; }
 
  private:
-  std::size_t x_;
-  std::size_t y_;
+  double x_;
+  double y_;
 };
 
 void to_json(nlohmann::json& json, const Position& position);

@@ -1,10 +1,8 @@
-#include "matrix_processor/heuristic_functions/euclidean_function.h"
+#include "a_star_search/heuristic_functions/euclidean_function.h"
 
 namespace ia {
 
-EuclideanFunction::EuclideanFunction(Direction direction) {
-  direction_ = direction;
-}
+EuclideanFunction::EuclideanFunction() {}
 
 double EuclideanFunction::operator()(Position position, Position goal) const {
   return std::sqrt(

@@ -10,7 +10,7 @@ namespace ia {
 
 class RectilinearFunction : public HeuristicFunction {
  public:
-  RectilinearFunction(Direction direction);
+  RectilinearFunction();
 
   double operator()(Position position, Position goal) const override;
 };

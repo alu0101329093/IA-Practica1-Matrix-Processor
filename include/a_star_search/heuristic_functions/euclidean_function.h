@@ -10,7 +10,7 @@ namespace ia {
 
 class EuclideanFunction : public HeuristicFunction {
  public:
-  EuclideanFunction(Direction direction);
+  EuclideanFunction();
 
   double operator()(Position position, Position goal) const override;
 };
