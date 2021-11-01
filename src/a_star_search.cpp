@@ -4,10 +4,14 @@ namespace ia {
 
 AStarSearch::AStarSearch(std::vector<std::vector<int>> matrix,
                          HeuristicFunction* heuristic_function,
-                         Directions direction)
-    : matrix_{matrix}, heuristic_function_{heuristic_function}, directions_{} {
-  start_.SetX(100);
-  start_.SetY(100);
+                         Directions direction, const Position& start,
+                         const Position& goal)
+    : matrix_{matrix},
+      heuristic_function_{heuristic_function},
+      directions_{},
+      start_{start},
+      goal_{goal} {
+  SetDirections(direction);
 }
 
 const std::vector<Position>& AStarSearch::GetDirections() const {
@@ -40,7 +44,7 @@ std::vector<Position> AStarSearch::GetShortestPath() const {
     Position current = frontier.top().second;
     frontier.pop();
     if (current == goal_) break;
-    for (Position next : GetPositionNeightbors()) {
+    for (Position next : GetPositionNeightbors(current)) {
       double new_cost = cost_so_far[current] + 1;
       if (cost_so_far.find(next) == cost_so_far.end() ||
           new_cost < cost_so_far[next]) {
@@ -54,16 +58,35 @@ std::vector<Position> AStarSearch::GetShortestPath() const {
   return ReconstructPath(came_from);
 }
 
-std::vector<Position> GetPositionNeightbors() const {}
+bool AStarSearch::PositionInBounds(const Position& position) const {
+  return position.GetX() >= 0 && position.GetX() < matrix_.size() &&
+         position.GetY() >= 0 && position.GetY() < matrix_[0].size();
+}
+
+bool AStarSearch::PositionPassable(const Position& position) const {
+  return matrix_[position.GetX()][position.GetY()] != 0;
+}
+
+std::vector<Position> AStarSearch::GetPositionNeightbors(
+    const Position& position) const {
+  std::vector<Position> neighbors{};
+  for (const auto& direction : directions_) {
+    Position next{direction.GetX() + position.GetX(),
+                  direction.GetY() + position.GetY()};
+    if (PositionInBounds(next) && PositionPassable(next))
+      neighbors.push_back(next);
+  }
+  return neighbors;
+}
 
 std::vector<Position> AStarSearch::ReconstructPath(
-    std::map<Position, Position> came_from) const {
+    const std::map<Position, Position>& came_from) const {
   std::vector<Position> path;
   if (came_from.find(goal_) == came_from.end()) return {};
   Position current = goal_;
   while (current != start_) {
     path.push_back(current);
-    current = came_from[current];
+    current = came_from.at(current);
   }
   std::reverse(path.begin(), path.end());
   return path;

@@ -8,4 +8,9 @@ void to_json(nlohmann::json& json, const Position& position) {
   json = nlohmann::json{position.GetX(), position.GetY()};
 }
 
+void from_json(const nlohmann::json& json, Position& position) {
+  position.SetX(json[0]);
+  position.SetY(json[1]);
+}
+
 }  // namespace ia

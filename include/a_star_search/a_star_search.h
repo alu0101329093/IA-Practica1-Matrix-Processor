@@ -20,7 +20,8 @@ class AStarSearch {
   };
 
   AStarSearch(std::vector<std::vector<int>> matrix,
-              HeuristicFunction* heuristic_function, Directions directions);
+              HeuristicFunction* heuristic_function, Directions directions,
+              const Position& start, const Position& goal);
 
   inline const std::vector<std::vector<int>> GetMatrix() const {
     return matrix_;
@@ -49,9 +50,11 @@ class AStarSearch {
     }
   };
 
-  std::vector<Position> GetPositionNeightbors() const;
+  bool PositionInBounds(const Position& position) const;
+  bool PositionPassable(const Position& position) const;
+  std::vector<Position> GetPositionNeightbors(const Position& position) const;
   std::vector<Position> ReconstructPath(
-      std::map<Position, Position> came_from) const;
+      const std::map<Position, Position>& came_from) const;
 
   std::vector<std::vector<int>> matrix_;
   std::unique_ptr<HeuristicFunction> heuristic_function_;
