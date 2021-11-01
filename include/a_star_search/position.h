@@ -8,12 +8,35 @@ namespace ia {
 
 class Position {
  public:
-  Position(double x, double y);
+  Position(double x = 0, double y = 0);
 
   inline double GetX() const { return x_; }
   inline void SetX(double x) { x_ = x; }
   inline double GetY() const { return y_; }
   inline void SetY(double y) { y_ = y; }
+
+  inline friend bool operator==(const Position& this_position,
+                                const Position& another_position) {
+    return this_position.x_ == another_position.x_ &&
+           this_position.y_ == another_position.y_;
+  }
+  inline friend bool operator!=(const Position& this_position,
+                                const Position& another_position) {
+    return this_position.x_ != another_position.x_ ||
+           this_position.y_ != another_position.y_;
+  }
+  inline friend bool operator<(const Position& this_position,
+                               const Position& another_position) {
+    return this_position.x_ < another_position.x_ ||
+           (this_position.x_ == another_position.x_ &&
+            this_position.y_ < another_position.y_);
+  }
+  inline friend bool operator>(const Position& this_position,
+                               const Position& another_position) {
+    return this_position.x_ > another_position.x_ ||
+           (this_position.x_ == another_position.x_ &&
+            this_position.y_ > another_position.y_);
+  }
 
  private:
   double x_;

@@ -1,6 +1,7 @@
 #ifndef MATRIXPROCESSOR_MATRIX_PROCESSOR_MATRIX_PROCESSOR_H_
 #define MATRIXPROCESSOR_MATRIX_PROCESSOR_MATRIX_PROCESSOR_H_
 
+#include <map>
 #include <memory>
 #include <queue>
 #include <vector>
@@ -40,11 +41,23 @@ class AStarSearch {
   std::vector<Position> GetShortestPath() const;
 
  private:
-  std::vector<Position> GetPositionNeightbors();
+  typedef std::pair<double, Position> PQElement;
+
+  struct ComparePrioritiedPosition {
+    bool operator()(const PQElement& lhs, const PQElement& rhs) const {
+      return lhs.first > rhs.first;
+    }
+  };
+
+  std::vector<Position> GetPositionNeightbors() const;
+  std::vector<Position> ReconstructPath(
+      std::map<Position, Position> came_from) const;
 
   std::vector<std::vector<int>> matrix_;
   std::unique_ptr<HeuristicFunction> heuristic_function_;
   std::vector<Position> directions_;
+  Position start_;
+  Position goal_;
 };
 
 }  // namespace ia
