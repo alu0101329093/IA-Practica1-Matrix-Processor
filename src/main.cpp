@@ -20,7 +20,14 @@ int main(int argc, char* argv[]) {
         goal{json[0]["goal"].get<ia::Position>()};
     ia::AStarSearch processor{matrix, heuristic_function, directions, start,
                               goal};
-    nlohmann::json path_json{processor.GetShortestPath()};
+    nlohmann::json path_json{};
+    auto start_time = std::chrono::high_resolution_clock::now();
+    path_json["path"] = processor.GetShortestPath();
+    auto stop_time = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(
+        stop_time - start_time);
+    path_json["time"] = duration.count();
+    path_json["nodes"] = processor.GetNodesNumber();
     client.socket()->emit("receivePath", path_json.dump());
   });
   while (!exit) continue;

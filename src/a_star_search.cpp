@@ -10,7 +10,8 @@ AStarSearch::AStarSearch(std::vector<std::vector<int>> matrix,
       heuristic_function_{heuristic_function},
       directions_{},
       start_{start},
-      goal_{goal} {
+      goal_{goal},
+      nodes_number_{} {
   SetDirections(direction);
 }
 
@@ -32,7 +33,8 @@ void AStarSearch::SetDirections(Directions directions) {
   }
 }
 
-std::vector<Position> AStarSearch::GetShortestPath() const {
+std::vector<Position> AStarSearch::GetShortestPath() {
+  nodes_number_ = 1;
   std::priority_queue<PQElement, std::vector<PQElement>,
                       ComparePrioritiedPosition>
       frontier{};
@@ -44,6 +46,7 @@ std::vector<Position> AStarSearch::GetShortestPath() const {
     Position current = frontier.top().second;
     frontier.pop();
     if (current == goal_) break;
+    nodes_number_++;
     for (Position next : GetPositionNeightbors(current)) {
       double new_cost = cost_so_far[current] + 1;
       if (cost_so_far.find(next) == cost_so_far.end() ||

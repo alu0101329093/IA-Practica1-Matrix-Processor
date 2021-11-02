@@ -39,7 +39,8 @@ class AStarSearch {
   const std::vector<Position>& GetDirections() const;
   void SetDirections(Directions directions);
 
-  std::vector<Position> GetShortestPath() const;
+  std::vector<Position> GetShortestPath();
+  inline std::size_t GetNodesNumber() const { return nodes_number_; }
 
  private:
   typedef std::pair<double, Position> PQElement;
@@ -61,6 +62,7 @@ class AStarSearch {
   std::vector<Position> directions_;
   Position start_;
   Position goal_;
+  std::size_t nodes_number_;
 };
 
 }  // namespace ia
